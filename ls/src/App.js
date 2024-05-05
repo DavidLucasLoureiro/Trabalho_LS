@@ -1,9 +1,9 @@
 import './App.css';
-
+import GameComponent from "./game-component/game-component.js";
 function App() {
   return (
     <div>
-        <h1>Hello World!</h1>
+        <GameComponent />
     </div>
   );
 }
