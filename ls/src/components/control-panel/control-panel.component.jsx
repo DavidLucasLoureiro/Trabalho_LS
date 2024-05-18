@@ -1,4 +1,4 @@
-import "control-panel.css";
+import "./control-panel.css";
 import React from "react";
 // modal no video
 export default function ControlPanel(){
