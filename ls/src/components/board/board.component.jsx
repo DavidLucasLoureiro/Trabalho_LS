@@ -1,5 +1,4 @@
 import React from "react";
 
-export default function Board(){
-    return(1);
-}
+function Board() {}
+export default Board

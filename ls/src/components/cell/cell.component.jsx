@@ -3,6 +3,6 @@ import { mineColor } from "../util/mineColors";
 import "../App.css";
 import Circle from "./Circle";
 
-export default function Cell() {
-  
-};
+function cell (){}
+
+export default Cell
