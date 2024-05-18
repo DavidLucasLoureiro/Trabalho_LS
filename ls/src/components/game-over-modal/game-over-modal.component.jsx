@@ -2,4 +2,4 @@ import React, { useState, useEffect } from "react";
 
 function Modal() {}
 
-export default Modal
+export default Modal;

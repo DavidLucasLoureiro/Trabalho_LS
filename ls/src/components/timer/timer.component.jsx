@@ -3,4 +3,4 @@ import "./timer.css";
 
 function Timer() {}
 
-export default Timer
+export default Timer;
