@@ -1,5 +1,5 @@
 import './App.css';
-import GameComponent from "./game-component/game-component.js";
+import {GamePanel,ControlPanel} from "./components";
 function App() {
   return (
     <div>
