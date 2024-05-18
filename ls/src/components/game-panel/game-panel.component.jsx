@@ -1,4 +1,4 @@
-import "./game-component.css";
+import "./game-panel.css";
 import React from "react";
 
 export default function GamePanel(){
