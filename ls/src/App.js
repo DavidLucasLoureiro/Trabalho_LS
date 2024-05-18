@@ -1,7 +1,6 @@
-import GamePanel from "./components/game-panel/game-panel.component";
 import './assets/styles/App.css';
-import Board from "./components/game-panel/game-panel.component";
-import Timer from "./components/game-panel/game-panel.component";
+import {Timer, Board, Cell, Modal, Header, Footer} from "./components/game-panel/game-panel.component";
+
 
 function App() {
   return (
