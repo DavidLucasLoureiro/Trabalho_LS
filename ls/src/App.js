@@ -1,5 +1,5 @@
 import './assets/styles/App.css';
-import {Timer, Board, Cell, Modal, Header, Footer} from "./components/game-panel/game-panel.component";
+import {Timer, Board, Cell, Modal, Header, Footer} from "./components/";
 
 
 function App() {
