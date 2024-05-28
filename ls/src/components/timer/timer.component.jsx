@@ -1,6 +1,12 @@
-import React from "react";
-import "./timer.css";
+import React from 'react';
 
-function Timer() {}
+const Timer = ({ time }) => {
+    return (
+        <div className="timer">
+            <img src="img/timer.png" alt="timer" />
+            <span className="time-count">{time}</span>
+        </div>
+    );
+};
 
 export default Timer;
