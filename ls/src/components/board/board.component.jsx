@@ -84,7 +84,26 @@ const Board = () => {
             }
         }
 
+        if (cell.hasMine === true){
+          // Se abrir uma mina
+          console.log("mina!");
+          revealMines(x,y);
+          window.alert("Game Over!");
+        }
+
         setBoard(newBoard);
+    };
+
+    const revealMines = (x,y) => {
+      let newBoard = [...board];
+      for (let i = 0; i<rows; i++){
+        for (let j = 0; j<columns; j++){
+          let cell = newBoard[i][j];
+          if (cell.hasMine)
+            cell.isOpen = true;
+        }
+      }
+      setBoard(newBoard);
     };
 
     const handleRightClick = (e, x, y) => {
