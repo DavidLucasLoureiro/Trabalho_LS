@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './board.css';
 import Cell from '../cell/cell.component';
 
-const Board = () => {
+function Board(props) {
     const rows = 9; // 9 Linhas
     const columns = 9; // 9 Colunas
     const mines = 10;
@@ -70,7 +70,7 @@ const Board = () => {
         if (cell.isOpen || cell.hasFlag) return;
 
         cell.isOpen = true;
-
+        props.turnCell(cell);
         if (cell.bombs === 0 && !cell.hasMine) {
             // Abrir todas as células adjacentes se não houver bombas ao redor
             for (let i = -1; i <= 1; i++) {
@@ -89,17 +89,27 @@ const Board = () => {
           console.log("mina!");
           revealMines(x,y);
           window.alert("Game Over!");
+          props.lose();
         }
 
         setBoard(newBoard);
     };
 
-    const revealMines = (x,y) => {
+    useEffect(() => {
+        if (props.open + mines === rows*columns) {
+            console.log("win");
+            window.alert("You Win!");
+           props.win();
+           revealAll();
+        }
+     }, [props.open]);
+
+    const revealAll = (x,y) => {
       let newBoard = [...board];
       for (let i = 0; i<rows; i++){
         for (let j = 0; j<columns; j++){
           let cell = newBoard[i][j];
-          if (cell.hasMine)
+          if (cell.isOpen == false)
             cell.isOpen = true;
         }
       }
