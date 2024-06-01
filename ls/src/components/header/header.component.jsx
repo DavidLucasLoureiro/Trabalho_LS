@@ -17,7 +17,7 @@ const Header = (props) => {
                 <div className="center">
                     <div className="flags">
                         <img src="img/flag.png" alt="flag" />
-                        <span className="mines-count">10</span>
+                        <span className="mines-count">{props.flags}</span>
                     </div>
                     <Timer 
                         game = {props.game}

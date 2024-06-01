@@ -54,28 +54,6 @@ function Board(props) {
 
     const [board, setBoard] = useState(initializeBoard());
 
-    // Contar bombas ao redor de cada célula
-   /* useEffect(() => {
-        const newBoard = board.map(row => row.map(cell => {
-            if (!cell.hasMine) {
-                let bombs = 0;
-                for (let x = -1; x <= 1; x++) {
-                    for (let y = -1; y <= 1; y++) {
-                        const newRow = cell.y + y;
-                        const newCol = cell.x + x;
-                        if (newRow >= 0 && newRow < props.rows && newCol >= 0 && newCol < props.cols && board[newRow][newCol].hasMine) {
-                            bombs++;
-                        }
-                    }
-                }
-                cell.bombs = bombs;
-            }
-            return cell;
-        }));
-        setBoard(newBoard);
-    }, [props.mines]); */
-    
-
     const handleCellClick = (x, y) => {
        //debugger
         let newBoard = [...board];
@@ -85,7 +63,7 @@ function Board(props) {
 
         cell.isOpen = true;
         props.turnCell(cell);
-        if(cell.hasMine  === true &&props.open === 0){
+        if(cell.hasMine  === true && props.open === 0){
             newBoard = initializeBoard();
             setBoard(newBoard);
         }
@@ -148,8 +126,14 @@ function Board(props) {
         let cell = newBoard[y][x];
 
         if (cell.isOpen) return;
-
+        if(props.flags==0&&!cell.hasFlag)return;
         cell.hasFlag = !cell.hasFlag;
+        if(cell.hasFlag){
+            props.updFlags(-1);
+        }
+        else{
+            props.updFlags(+1);
+        }
         setBoard(newBoard);
     };
 

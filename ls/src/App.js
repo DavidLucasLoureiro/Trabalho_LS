@@ -89,6 +89,7 @@ function App() {
       game={game}
       time={time}
       setTime={setTime}
+      flags={flags}
       />
       <Board
       game={game}
@@ -99,6 +100,8 @@ function App() {
       rows = {rows}
       cols = {cols}
       mines = {mines}
+      flags = {flags}
+      updFlags={updFlags}
       />
       </main>
     </div>
