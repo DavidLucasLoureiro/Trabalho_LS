@@ -31,6 +31,23 @@ function Board(props) {
                 cell.hasMine = true;
             }
         }
+
+        board.map(row => row.map(cell => {
+            if (!cell.hasMine) {
+                let bombs = 0;
+                for (let x = -1; x <= 1; x++) {
+                    for (let y = -1; y <= 1; y++) {
+                        const newRow = cell.y + y;
+                        const newCol = cell.x + x;
+                        if (newRow >= 0 && newRow < props.rows && newCol >= 0 && newCol < props.cols && board[newRow][newCol].hasMine) {
+                            bombs++;
+                        }
+                    }
+                }
+                cell.bombs = bombs;
+            }
+        }))
+
         console.log(board);
         return board;
     };
@@ -38,7 +55,7 @@ function Board(props) {
     const [board, setBoard] = useState(initializeBoard());
 
     // Contar bombas ao redor de cada célula
-    useEffect(() => {
+   /* useEffect(() => {
         const newBoard = board.map(row => row.map(cell => {
             if (!cell.hasMine) {
                 let bombs = 0;
@@ -56,7 +73,7 @@ function Board(props) {
             return cell;
         }));
         setBoard(newBoard);
-    }, []); 
+    }, [props.mines]); */
     
 
     const handleCellClick = (x, y) => {
@@ -68,34 +85,41 @@ function Board(props) {
 
         cell.isOpen = true;
         props.turnCell(cell);
-        if (cell.bombs === 0 && !cell.hasMine) {
-            // Abrir todas as células adjacentes se não houver bombas ao redor
-            for (let i = -1; i <= 1; i++) {
-                for (let j = -1; j <= 1; j++) {
-                    if (x + i >= 0 && x + i < props.cols && y + j >= 0 && y + j < props.rows) {
-                        if (!newBoard[y + j][x + i].isOpen) {
-                            handleCellClick(x + i, y + j);
+        if(cell.hasMine  === true &&props.open === 0){
+            newBoard = initializeBoard();
+            setBoard(newBoard);
+        }
+        else{
+            if (cell.bombs === 0 && !cell.hasMine) {
+                // Abrir todas as células adjacentes se não houver bombas ao redor
+                for (let i = -1; i <= 1; i++) {
+                    for (let j = -1; j <= 1; j++) {
+                        if (x + i >= 0 && x + i < props.cols && y + j >= 0 && y + j < props.rows) {
+                            if (!newBoard[y + j][x + i].isOpen) {
+                                handleCellClick(x + i, y + j);
+                            }
                         }
                     }
                 }
             }
+            debugger
+            if (cell.hasMine === true && cell.bombs === 0){
+              // Se abrir uma mina
+              console.log("mina!");
+              revealAll();
+              window.alert("Game Over!");
+              props.lose();
+            }
+    
+            setBoard(newBoard);
         }
-
-        if (cell.hasMine === true && !cell.hasFlag){
-          // Se abrir uma mina
-          console.log("mina!");
-          revealAll();
-          window.alert("Game Over!");
-          props.lose();
-        }
-
-        setBoard(newBoard);
+        
     };
 
-/*     useEffect(() => {
+    useEffect(() => {
         const board = initializeBoard();
         setBoard(board);
-    },[props.mines]); */
+    },[props.mines]);
 
     useEffect(() => {
         if (props.open + props.mines === props.rows*props.cols) {
