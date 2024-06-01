@@ -14,6 +14,7 @@ function App() {
   const [mines, setMines] = useState(10);
   const [flags, setFlags] = useState(10) 
   const [diff, setDiff] = useState("0");
+  const [time,setTime] = useState(0)
 
   useEffect(() => {
     if(diff === "0"){
@@ -34,6 +35,10 @@ function App() {
     }
   },[diff])
 
+ /*  useEffect(() => {
+    if(game==="ended")
+
+  },) */
   const onDiffChange = (event) => {
     const selectedDiff = event.target.value;
   
@@ -76,12 +81,14 @@ function App() {
     setFlags(prevFlags => prevFlags + amount);
   }
 
-
   return (
     <div id="container">
       <main>
       <Header
       onDiffChange={onDiffChange}
+      game={game}
+      time={time}
+      setTime={setTime}
       />
       <Board
       game={game}
@@ -93,8 +100,6 @@ function App() {
       cols = {cols}
       mines = {mines}
       />
-      
-
       </main>
     </div>
   );
