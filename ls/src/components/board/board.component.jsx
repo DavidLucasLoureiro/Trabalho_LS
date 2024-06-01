@@ -3,15 +3,14 @@ import './board.css';
 import Cell from '../cell/cell.component';
 
 function Board(props) {
-    const rows = 9; // 9 Linhas
-    const columns = 9; // 9 Colunas
-    const mines = 10;
+    
+    
 
     const initializeBoard = () => {
         let board = [];
-        for (let i = 0; i < rows; i++) {
+        for (let i = 0; i < props.rows; i++) {
             board.push([]);
-            for (let j = 0; j < columns; j++) {
+            for (let j = 0; j < props.cols; j++) {
                 board[i].push({
                     x: j,
                     y: i,
@@ -24,9 +23,9 @@ function Board(props) {
         }
 
         // Adiciona minas
-        for (let i = 0; i < mines; i++) {
-            let randomRow = Math.floor(Math.random() * rows);
-            let randomCol = Math.floor(Math.random() * columns);
+        for (let i = 0; i < props.mines; i++) {
+            let randomRow = Math.floor(Math.random() * props.rows);
+            let randomCol = Math.floor(Math.random() * props.cols);
             let cell = board[randomRow][randomCol];
 
             if (cell.hasMine) {
@@ -35,7 +34,7 @@ function Board(props) {
                 cell.hasMine = true;
             }
         }
-
+        console.log(board);
         return board;
     };
 
@@ -50,7 +49,7 @@ function Board(props) {
                     for (let y = -1; y <= 1; y++) {
                         const newRow = cell.y + y;
                         const newCol = cell.x + x;
-                        if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < columns && board[newRow][newCol].hasMine) {
+                        if (newRow >= 0 && newRow < props.rows && newCol >= 0 && newCol < props.cols && board[newRow][newCol].hasMine) {
                             bombs++;
                         }
                     }
@@ -64,6 +63,7 @@ function Board(props) {
     
 
     const handleCellClick = (x, y) => {
+       //debugger
         let newBoard = [...board];
         let cell = newBoard[y][x];
 
@@ -75,7 +75,7 @@ function Board(props) {
             // Abrir todas as células adjacentes se não houver bombas ao redor
             for (let i = -1; i <= 1; i++) {
                 for (let j = -1; j <= 1; j++) {
-                    if (x + i >= 0 && x + i < columns && y + j >= 0 && y + j < rows) {
+                    if (x + i >= 0 && x + i < props.cols && y + j >= 0 && y + j < props.rows) {
                         if (!newBoard[y + j][x + i].isOpen) {
                             handleCellClick(x + i, y + j);
                         }
@@ -84,10 +84,10 @@ function Board(props) {
             }
         }
 
-        if (cell.hasMine === true){
+        if (cell.hasMine === true && !cell.hasFlag){
           // Se abrir uma mina
           console.log("mina!");
-          revealMines(x,y);
+          revealAll();
           window.alert("Game Over!");
           props.lose();
         }
@@ -95,10 +95,15 @@ function Board(props) {
         setBoard(newBoard);
     };
 
+    /*useEffect(() => {
+        const board = initializeBoard();
+        setBoard(board);
+    },[props.mines]);*/
+
     useEffect(() => {
-        if (props.open + mines === rows*columns) {
+        if (props.open + props.mines === props.rows*props.cols) {
             console.log("win");
-            window.alert("You Win!");
+            //window.alert("You Win!");
            props.win();
            revealAll();
         }
@@ -106,8 +111,8 @@ function Board(props) {
 
     const revealAll = (x,y) => {
       let newBoard = [...board];
-      for (let i = 0; i<rows; i++){
-        for (let j = 0; j<columns; j++){
+      for (let i = 0; i<props.rows; i++){
+        for (let j = 0; j<props.cols; j++){
           let cell = newBoard[i][j];
           if (cell.isOpen == false)
             cell.isOpen = true;

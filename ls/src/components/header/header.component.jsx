@@ -2,12 +2,18 @@ import React from 'react';
 import './header.css';
 import Timer from '../timer/timer.component';
 
-const Header = () => {
+const Header = (props) => {
     return(
         <div className="minesweeper">
             <h1>Minesweeper</h1>
             <div className="board-head">
-                <div className="level">Level: Easy</div>
+                <div className="diff">
+                    <select className="diff" onChange={props.onDiffChange}>
+                        <option value="0">Fácil</option>
+                        <option value="1">Médio</option>
+                        <option value="2">Avançado</option>
+                    </select>
+                </div>
                 <div className="center">
                     <div className="flags">
                         <img src="img/flag.png" alt="flag" />
