@@ -102,8 +102,8 @@ function Board(props) {
                     }
                 }
             }
-    
-            if (cell.hasMine === true && cell.bombs !== 0){
+            debugger
+            if (cell.hasMine === true && cell.bombs === 0){
               // Se abrir uma mina
               console.log("mina!");
               revealAll();
