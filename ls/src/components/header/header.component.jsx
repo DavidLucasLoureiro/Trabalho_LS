@@ -19,7 +19,11 @@ const Header = (props) => {
                         <img src="img/flag.png" alt="flag" />
                         <span className="mines-count">10</span>
                     </div>
-                    <Timer time={0} />
+                    <Timer 
+                        game = {props.game}
+                        time = {props.time}
+                        setTime = {props.setTime} 
+                    />
                     <button className="reset">
                         <img src="img/reset.png" alt="reset" />
                     </button>

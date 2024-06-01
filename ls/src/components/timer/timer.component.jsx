@@ -1,12 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
-const Timer = ({ time }) => {
-    return (
+export default function Timer( props ) {
+    useEffect(() => {
+        if (props.game === "started") {
+          const interval = setInterval(() => {
+            props.setTime(prevTime => prevTime + 1);
+          }, 1200);
+          return () => clearInterval(interval);
+        }
+      }, [props.game]);
+      return (
         <div className="timer">
             <img src="img/timer.png" alt="timer" />
-            <span className="time-count">{time}</span>
+            <span className="time-count">{props.time}</span>
         </div>
     );
-};
-
-export default Timer;
+}

@@ -3,9 +3,6 @@ import './board.css';
 import Cell from '../cell/cell.component';
 
 function Board(props) {
-    
-    
-
     const initializeBoard = () => {
         let board = [];
         for (let i = 0; i < props.rows; i++) {
@@ -95,10 +92,10 @@ function Board(props) {
         setBoard(newBoard);
     };
 
-    /*useEffect(() => {
+/*     useEffect(() => {
         const board = initializeBoard();
         setBoard(board);
-    },[props.mines]);*/
+    },[props.mines]); */
 
     useEffect(() => {
         if (props.open + props.mines === props.rows*props.cols) {
