@@ -5,6 +5,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
+    width:100%;
     background-color: #f8f9fa;
 }
 
@@ -13,7 +14,7 @@ body {
     grid-template-columns: repeat(9, 30px);
     grid-template-rows: repeat(9, 30px);
     gap: 2px;
-    position: absolute;
+    position:fixed;
     top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
