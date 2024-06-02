@@ -31,8 +31,8 @@ function App() {
       setMines(40);
       setFlags(40);
     } else if (diff === "2") {
-      setCols(30);
-      setRows(16);
+      setCols(16);
+      setRows(30);
       setMines(99);
       setFlags(99);
     }
