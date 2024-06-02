@@ -139,19 +139,14 @@ function Board(props) {
 
         if(!cell.hasFlag && !cell.hasQuestion){
             cell.hasFlag = true;
+            props.updFlags(-1);
         }else if(cell.hasFlag){
             cell.hasFlag = false;
             cell.hasQuestion = true;
+            props.updFlags(+1);
         }else if(cell.hasQuestion){
             cell.hasQuestion=false;
         } 
-        
-        if(cell.hasFlag){
-            props.updFlags(-1);
-        }
-        else{
-            props.updFlags(+1);
-        }
 
         console.log(cell.hasQuestion);
         setBoard(newBoard);
@@ -163,6 +158,7 @@ function Board(props) {
                     <div key={rowIndex} className="row">
                         {row.map(cell => (
                             <Cell
+                                game={props.game}
                                 key={`${cell.x}-${cell.y}`}
                                 {...cell}
                                 onClick={() => handleCellClick(cell.x, cell.y)}
