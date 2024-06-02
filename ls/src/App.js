@@ -35,10 +35,17 @@ function App() {
     }
   },[diff])
 
- /*  useEffect(() => {
-    if(game==="ended")
 
-  },) */
+  const getBoardClass = () => {
+    if (diff === "0") {
+        return "board-easy";
+    } else if (diff === "1") {
+        return "board-medium";
+    } else if (diff === "2") {
+        return "board-hard";
+    }
+};
+
   const onDiffChange = (event) => {
     const selectedDiff = event.target.value;
   
@@ -102,6 +109,7 @@ function App() {
       mines = {mines}
       flags = {flags}
       updFlags={updFlags}
+      getBoardClass={getBoardClass}
       />
       </main>
     </div>

@@ -151,9 +151,10 @@ function Board(props) {
         console.log(cell.hasQuestion);
         setBoard(newBoard);
     };
+    
 
     return (
-            <div className="board">
+        <div className={`board ${props.getBoardClass()}`}>
                 {board.map((row, rowIndex) => (
                     <div key={rowIndex} className="row">
                         {row.map(cell => (
