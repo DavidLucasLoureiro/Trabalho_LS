@@ -17,7 +17,7 @@ const Cell = ({ x, y, isOpen, hasMine, hasFlag, hasQuestion, bombs, onClick, onC
             ) : hasQuestion ? (
                 <img src="/img/question.png" alt="question" className="flag-image" />
             ) : isOpen && hasMine ? (
-                <img src="/img/bomb.png" alt="mine" className="mine-image" />
+                <img src="/img/bola-portugal.png" alt="mine" className="mine-image" />
             ) : hasFlag ? (
                 <img src="/img/flag.png" alt="flag" className="flag-image" />
             ) : isOpen && bombs > 0 ? bombs : ''

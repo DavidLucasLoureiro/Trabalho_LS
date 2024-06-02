@@ -6,7 +6,7 @@ body {
     height: 100vh;
     margin: 0;
     width:100%;
-    background-color: #f8f9fa;
+    background-color: #FF0000;
 }
 
 .board {
@@ -28,7 +28,7 @@ body {
 .board-medium {
     grid-template-columns: repeat(16, 30px);
     grid-template-rows: repeat(16, 30px);
-    top: 56%;
+    top: 57%;
     left: 50%;
 }
 
