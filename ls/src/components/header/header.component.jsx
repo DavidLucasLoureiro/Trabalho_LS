@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
 import './header.css';
 import Timer from '../timer/timer.component';
 
-const Header = (props) => {
+function Header(props) {
+    const [isDisabled, setIsDisabled] = useState(false);
+    useEffect(() => {
+        if(props.game==="started"){
+            setIsDisabled(true);
+        }
+        else{
+            setIsDisabled(false);
+        }
+    },[props.game]);
     return(
         <div className="minesweeper">
             <h1>Minesweeper</h1>
             <div className="board-head">
                 <div className="diff">
-                    <select className="diff" onChange={props.onDiffChange}>
+                    <select className="diff" disabled={isDisabled} onChange={props.onDiffChange}>
                         <option value="0">Fácil</option>
                         <option value="1">Médio</option>
                         <option value="2">Avançado</option>

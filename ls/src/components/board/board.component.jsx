@@ -80,7 +80,7 @@ function Board(props) {
                     }
                 }
             }
-            debugger
+            
             if (cell.hasMine === true && cell.bombs === 0){
               // Se abrir uma mina
               console.log("mina!");
