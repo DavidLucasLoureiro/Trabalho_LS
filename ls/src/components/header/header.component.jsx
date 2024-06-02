@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react';
 import './header.css';
+import '../board/board.component';
 import Timer from '../timer/timer.component';
 
 function Header(props) {
@@ -33,7 +34,7 @@ function Header(props) {
                         time = {props.time}
                         setTime = {props.setTime} 
                     />
-                    <button className="reset">
+                    <button onClick={props.resetGame} className="reset">
                         <img src="img/reset.png" alt="reset" />
                     </button>
                 </div>
