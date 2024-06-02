@@ -131,6 +131,7 @@ function App() {
       <GameOverModal 
         game = {game}
         result={result}
+        resetGame={resetGame}
       />
       </main>
     </div>

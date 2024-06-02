@@ -84,7 +84,6 @@ function Board(props) {
         // Se abrir uma mina
         console.log("mina!");
         revealAll();
-        window.alert("Game Over!");
         props.lose();
       }
 
