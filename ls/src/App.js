@@ -4,6 +4,7 @@ import Header from './components/header/header.component';
 import Board from "./components/board/board.component";
 import Cell from "./components/cell/cell.component";
 import Modal from "./components/game-over-modal/game-over-modal.component";
+import GameOverModal from './components/game-over-modal/game-over-modal.component';
 import { useEffect, useState } from 'react'
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   const [flags, setFlags] = useState(10) 
   const [diff, setDiff] = useState("0");
   const [time,setTime] = useState(0)
+  const [result,setResult] = useState(false);
 
   useEffect(() => {
     if(diff === "0"){
@@ -68,11 +70,11 @@ function App() {
 
   const win = () => {
     setGame("ended");
-    //setResult("win");
+    setResult(true);
   };
   const lose = () => {
     setGame("ended");
-    //setResult("lose");
+    setResult(false);
   };
 
   const turnCell = (cell) => {
@@ -110,6 +112,10 @@ function App() {
       flags = {flags}
       updFlags={updFlags}
       getBoardClass={getBoardClass}
+      />
+      <GameOverModal 
+        game = {game}
+        result={result}
       />
       </main>
     </div>

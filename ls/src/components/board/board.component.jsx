@@ -116,13 +116,6 @@ function Board(props) {
           let cell = newBoard[i][j];
           if (!cell.isOpen){
             cell.isOpen = true;
-            if(cell.hasFlag && cell.hasMine){
-                console.log("correct");
-            }
-            else if(cell.hasFlag&&!cell.hasMine||cell.hasQuestion&&!cell.hasMine){
-                console.log("womp womp");
-            }
-        
           }
         }
       }
