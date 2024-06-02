@@ -97,6 +97,7 @@ function App() {
       time={time}
       setTime={setTime}
       flags={flags}
+      diff={diff}
       />
       <Board
       game={game}

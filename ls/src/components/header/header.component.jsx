@@ -1,20 +1,35 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './header.css';
 import Timer from '../timer/timer.component';
 
 function Header(props) {
     const [isDisabled, setIsDisabled] = useState(false);
+
     useEffect(() => {
-        if(props.game==="started"){
+        if (props.game === "started") {
             setIsDisabled(true);
-        }
-        else{
+        } else {
             setIsDisabled(false);
         }
-    },[props.game]);
-    return(
-        <div className="minesweeper">
-            <h1>Minesweeper</h1>
+    }, [props.game]);
+
+    const getHeaderClass = () => {
+        if (props.diff === "0") {
+            return "header-easy";
+        } else if (props.diff === "1") {
+            return "header-medium";
+        } else if (props.diff === "2") {
+            return "header-hard";
+        }
+    };
+
+    return (
+        <div className={`minesweeper ${getHeaderClass()}`}>
+            <div className="minesweeper-title">
+                <img src="img/bola-de-futebol.png" alt="euro" className="left-image" />
+                <h1>Minesweeper</h1>
+                <img src="img/bola-de-futebol-rotated.png" alt="euro" className="right-image" />
+            </div>
             <div className="board-head">
                 <div className="diff">
                     <select className="diff" disabled={isDisabled} onChange={props.onDiffChange}>
@@ -29,9 +44,9 @@ function Header(props) {
                         <span className="mines-count">{props.flags}</span>
                     </div>
                     <Timer 
-                        game = {props.game}
-                        time = {props.time}
-                        setTime = {props.setTime} 
+                        game={props.game}
+                        time={props.time}
+                        setTime={props.setTime} 
                     />
                     <button className="reset">
                         <img src="img/reset.png" alt="reset" />
@@ -40,5 +55,6 @@ function Header(props) {
             </div>
         </div>
     );
-};
+}
+
 export default Header;
