@@ -15,6 +15,7 @@ function Board(props) {
                     isOpen: false,
                     hasMine: false,
                     hasFlag: false,
+                    hasQuestion: false
                 });
             }
         }
@@ -59,7 +60,7 @@ function Board(props) {
         let newBoard = [...board];
         let cell = newBoard[y][x];
 
-        if (cell.isOpen || cell.hasFlag) return;
+        if (cell.isOpen || cell.hasFlag || cell.hasQuestion) return;
 
         cell.isOpen = true;
         props.turnCell(cell);
@@ -113,8 +114,16 @@ function Board(props) {
       for (let i = 0; i<props.rows; i++){
         for (let j = 0; j<props.cols; j++){
           let cell = newBoard[i][j];
-          if (cell.isOpen == false)
+          if (!cell.isOpen){
             cell.isOpen = true;
+            if(cell.hasFlag && cell.hasMine){
+                console.log("correct");
+            }
+            else if(cell.hasFlag&&!cell.hasMine||cell.hasQuestion&&!cell.hasMine){
+                console.log("womp womp");
+            }
+        
+          }
         }
       }
       setBoard(newBoard);
@@ -126,14 +135,25 @@ function Board(props) {
         let cell = newBoard[y][x];
 
         if (cell.isOpen) return;
-        if(props.flags==0&&!cell.hasFlag)return;
-        cell.hasFlag = !cell.hasFlag;
+        if(props.flags==0&&!cell.hasFlag&&!cell.hasQuestion)return;
+
+        if(!cell.hasFlag && !cell.hasQuestion){
+            cell.hasFlag = true;
+        }else if(cell.hasFlag){
+            cell.hasFlag = false;
+            cell.hasQuestion = true;
+        }else if(cell.hasQuestion){
+            cell.hasQuestion=false;
+        } 
+        
         if(cell.hasFlag){
             props.updFlags(-1);
         }
         else{
             props.updFlags(+1);
         }
+
+        console.log(cell.hasQuestion);
         setBoard(newBoard);
     };
 
