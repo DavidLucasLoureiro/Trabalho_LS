@@ -1,5 +1,6 @@
 import React from 'react';
 import './header.css';
+import '../board/board.component';
 import Timer from '../timer/timer.component';
 
 const Header = (props) => {
@@ -24,7 +25,7 @@ const Header = (props) => {
                         time = {props.time}
                         setTime = {props.setTime} 
                     />
-                    <button className="reset">
+                    <button onClick={props.resetGame} className="reset">
                         <img src="img/reset.png" alt="reset" />
                     </button>
                 </div>
