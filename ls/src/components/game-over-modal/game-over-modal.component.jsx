@@ -1,13 +1,18 @@
 import React from 'react';
 import './game-over-modal.css';
 
-const GameOverModal = ({ isGameOver, onRestart }) => {
-    if (!isGameOver) return null;
+const GameOverModal = ({ game, resetGame, result }) => {
+    if (game !== "ended") return null;
+
     return (
         <div className="game-over-modal">
             <div className="game-over-content">
-                <h2>Game Over</h2>
-                <button onClick={onRestart}>Restart</button>
+                <h1>{result ? "You Win!" : "You Lose!"}</h1>
+                {
+                    result ? (<img src="/img/win.jpg" alt=""/>):(<img src="/img/sad.gif" alt=""/>)
+                }
+                <br />
+                <button onClick={resetGame}>Restart</button>
             </div>
         </div>
     );
