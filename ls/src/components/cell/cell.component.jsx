@@ -2,8 +2,10 @@ import React, { useState,useEffect } from 'react';
 import './cell.css';
 
 const Cell = ({ x, y, isOpen, hasMine, hasFlag, hasQuestion, bombs, onClick, onContextMenu,game }) => {
+
     let cellClass = 'cell';
     if (isOpen) cellClass += ' open';
+    if ((x+y) % 2 === 0) cellClass += ' even';
     
     return (
         <div className={cellClass} onClick={onClick} onContextMenu={onContextMenu}>
