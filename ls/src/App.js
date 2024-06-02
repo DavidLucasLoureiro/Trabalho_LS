@@ -34,7 +34,18 @@ function App() {
       setMines(99);
       setFlags(99);
     }
-  }, [diff]);
+  },[diff])
+
+
+  const getBoardClass = () => {
+    if (diff === "0") {
+        return "board-easy";
+    } else if (diff === "1") {
+        return "board-medium";
+    } else if (diff === "2") {
+        return "board-hard";
+    }
+};
 
   const onDiffChange = (event) => {
     const selectedDiff = event.target.value;
@@ -113,7 +124,8 @@ function App() {
           flags={flags}
           updFlags={updFlags}
           resetFlags={resetFlags}
-        />
+        getBoardClass={getBoardClass}
+      />
       </main>
     </div>
   );

@@ -3,21 +3,22 @@ import './board.css';
 import Cell from '../cell/cell.component';
 
 function Board(props) {
-  const initializeBoard = () => {
-    let board = [];
-    for (let i = 0; i < props.rows; i++) {
-      board.push([]);
-      for (let j = 0; j < props.cols; j++) {
-        board[i].push({
-          x: j,
-          y: i,
-          bombs: 0,
-          isOpen: false,
-          hasMine: false,
-          hasFlag: false,
-        });
-      }
-    }
+    const initializeBoard = () => {
+        let board = [];
+        for (let i = 0; i < props.rows; i++) {
+            board.push([]);
+            for (let j = 0; j < props.cols; j++) {
+                board[i].push({
+                    x: j,
+                    y: i,
+                    bombs: 0,
+                    isOpen: false,
+                    hasMine: false,
+                    hasFlag: false,
+                    hasQuestion: false
+                });
+            }
+        }
 
     // Adiciona minas
     for (let i = 0; i < props.mines; i++) {
@@ -58,7 +59,7 @@ function Board(props) {
     let newBoard = [...board];
     let cell = newBoard[y][x];
 
-    if (cell.isOpen || cell.hasFlag) return;
+        if (cell.isOpen || cell.hasFlag || cell.hasQuestion) return;
 
     cell.isOpen = true;
     props.turnCell(cell);
@@ -104,22 +105,30 @@ function Board(props) {
     }
   }, [props.open]);
 
-  const revealAll = () => {
-    let newBoard = [...board];
-    for (let i = 0; i < props.rows; i++) {
-      for (let j = 0; j < props.cols; j++) {
-        let cell = newBoard[i][j];
-        if (!cell.isOpen) cell.isOpen = true;
+    const revealAll = (x,y) => {
+      let newBoard = [...board];
+      for (let i = 0; i<props.rows; i++){
+        for (let j = 0; j<props.cols; j++){
+          let cell = newBoard[i][j];
+          if (!cell.isOpen){
+            cell.isOpen = true;
+            if(cell.hasFlag && cell.hasMine){
+                console.log("correct");
+            }
+            else if(cell.hasFlag&&!cell.hasMine||cell.hasQuestion&&!cell.hasMine){
+                console.log("womp womp");
+            }
+        
+          }
+        }
       }
-    }
-    setBoard(newBoard);
-  };
-
-  useEffect(() => {
-    if (props.game === "ended") {
-      revealAll();
-    }
-  }, [props.game]);
+      setBoard(newBoard);
+    };
+    useEffect(() => {
+      if (props.game === "ended") {
+        revealAll();
+      }
+    }, [props.game]);
 
   const handleRightClick = (e, x, y) => {
     e.preventDefault();
@@ -127,20 +136,29 @@ function Board(props) {
     let cell = newBoard[y][x];
 
     if (cell.isOpen) return;
-    if (flagCount === 0 && !cell.hasFlag) return;
+    if (flagCount === 0 && !cell.hasFlag && !cell.hasQuestion) return;
 
-    cell.hasFlag = !cell.hasFlag;
-    setFlagCount(flagCount + (cell.hasFlag ? -1 : 1));
-    props.updFlags(cell.hasFlag ? -1 : 1);
-    setBoard(newBoard);
+    if(!cell.hasFlag && !cell.hasQuestion){
+      cell.hasFlag = true;
+      props.updFlags(-1);
+  }else if(cell.hasFlag){
+      cell.hasFlag = false;
+      cell.hasQuestion = true;
+      props.updFlags(+1);
+  }else if(cell.hasQuestion){
+      cell.hasQuestion=false;
+  } 
+  console.log(cell.hasQuestion);
+      setBoard(newBoard);
   };
 
   return (
-    <div className="board">
+    <div className={`board ${props.getBoardClass()}`}>
       {board.map((row, rowIndex) => (
         <div key={rowIndex} className="row">
           {row.map(cell => (
             <Cell
+              game={props.game}
               key={`${cell.x}-${cell.y}`}
               {...cell}
               onClick={() => handleCellClick(cell.x, cell.y)}
