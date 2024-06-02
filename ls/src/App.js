@@ -124,7 +124,7 @@ function App() {
           flags={flags}
           updFlags={updFlags}
           resetFlags={resetFlags}
-        getBoardClass={getBoardClass}
+          getBoardClass={getBoardClass}
       />
       </main>
     </div>
