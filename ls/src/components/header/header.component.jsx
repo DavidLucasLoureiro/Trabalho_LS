@@ -33,11 +33,13 @@ function Header(props) {
             </div>
             <div className="board-head">
                 <div className="diff">
-                    <select className="diff" disabled={isDisabled} onChange={props.onDiffChange}>
-                        <option value="0">Fácil</option>
-                        <option value="1">Médio</option>
-                        <option value="2">Avançado</option>
-                    </select>
+                    <div className='select'>
+                        <select className="diff" disabled={isDisabled} onChange={props.onDiffChange}>
+                            <option value="0">Fácil</option>
+                            <option value="1">Médio</option>
+                            <option value="2">Avançado</option>
+                        </select>
+                    </div>
                 </div>
                 <div className="center">
                     <div className="flags">
