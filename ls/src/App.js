@@ -111,7 +111,7 @@ function App() {
           time={time}
           setTime={setTime}
           flags={flags}
-      diff={diff}
+          diff={diff}
           resetGame={resetGame}
         />
         <Board
