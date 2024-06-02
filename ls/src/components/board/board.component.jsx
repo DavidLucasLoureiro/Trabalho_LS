@@ -126,7 +126,7 @@ function Board(props) {
         let cell = newBoard[y][x];
 
         if (cell.isOpen) return;
-        if(props.flags==0&&!cell.hasFlag)return;
+        if(props.flags == 0 &&! cell.hasFlag)return;
         cell.hasFlag = !cell.hasFlag;
         if(cell.hasFlag){
             props.updFlags(-1);
