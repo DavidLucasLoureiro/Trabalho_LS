@@ -33,9 +33,9 @@
 }
 
 .cell:hover {
-    filter: brightness(85%);
+    filter: saturate(300%);
 }
 
 .cell.open:hover {
-    filter: brightness(85%);
+    filter: saturate(200%);
 }
