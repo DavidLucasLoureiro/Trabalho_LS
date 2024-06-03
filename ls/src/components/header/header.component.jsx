@@ -7,14 +7,17 @@ import GameOverModal from '../game-over-modal/game-over-modal.component';
 function Header(props) {
     const [isDisabled, setIsDisabled] = useState(false);
 
+    // Efeito para desativar ou ativar o seletor de dificuldade com base no estado do jogo
     useEffect(() => {
         if (props.game === "started") {
-            setIsDisabled(true);
+            setIsDisabled(true); // Desativar seletor se o jogo tiver começado
         } else {
-            setIsDisabled(false);
+            setIsDisabled(false); // Ativar seletor se o jogo não tiver começado
         }
     }, [props.game]);
 
+
+    // Função para obter a classe do cabeçalho com base na dificuldade
     const getHeaderClass = () => {
         if (props.diff === "0") {
             return "header-easy";
@@ -25,6 +28,7 @@ function Header(props) {
         }
     };
 
+    // Função para obter a classe dos créditos com base na dificuldade
     const getCreditsClass = () => {
         if (props.diff === "0") {
             return "credits-easy";

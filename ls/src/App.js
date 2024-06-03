@@ -8,17 +8,19 @@ import GameOverModal from './components/game-over-modal/game-over-modal.componen
 import { useEffect, useState } from 'react'
 
 function App() {
-  const [game, setGame] = useState("wait");
-  const [open, setOpen] = useState(0);
-  const [rows, setRows] = useState(9);
-  const [cols, setCols] = useState(9);
-  const [mines, setMines] = useState(10);
-  const [flags, setFlags] = useState(10);
-  const [diff, setDiff] = useState("0");
-  const [time, setTime] = useState(0);
-  const [key, setKey] = useState(0); // Usado para forçar a re-montagem do componente Board
-  const [result,setResult] = useState("");
+   // Declaração de estados utilizando useState
+   const [game, setGame] = useState("wait"); // Estado do jogo: "wait", "started", "ended"
+   const [open, setOpen] = useState(0); // Número de células abertas
+   const [rows, setRows] = useState(9); // Número de linhas do tabuleiro
+   const [cols, setCols] = useState(9); // Número de colunas do tabuleiro
+   const [mines, setMines] = useState(10); // Número de minas no tabuleiro
+   const [flags, setFlags] = useState(10); // Número de bandeiras disponíveis
+   const [diff, setDiff] = useState("0"); // Dificuldade do jogo: "0" (fácil), "1" (médio), "2" (difícil)
+   const [time, setTime] = useState(0); // Tempo do jogo
+   const [key, setKey] = useState(0); // Usado para forçar a re-montagem do componente Board
+   const [result, setResult] = useState(""); // Resultado do jogo: true (ganhou) ou false (perdeu)
 
+  // useEffect para ajustar o tamanho do tabuleiro e o número de minas/bandeiras com base na dificuldade selecionada
   useEffect(() => {
     if (diff === "0") {
       setCols(9);
@@ -38,7 +40,7 @@ function App() {
     }
   },[diff])
 
-
+  // Função para obter a classe CSS do tabuleiro com base na dificuldade
   const getBoardClass = () => {
     if (diff === "0") {
         return "board-easy";
@@ -49,6 +51,7 @@ function App() {
     }
 };
 
+// Função para alterar a dificuldade do jogo
   const onDiffChange = (event) => {
     const selectedDiff = event.target.value;
 
@@ -61,22 +64,26 @@ function App() {
     }
   };
 
+  // useEffect para executar ações quando o estado do jogo muda para "started"
   useEffect(() => {
     if (game === "started") {
       console.log("start");
     }
   }, [game]);
 
+   // Função chamada quando o jogador ganha
   const win = () => {
     setGame("ended");
     setResult(true);
   };
 
+   // Função chamada quando o jogador perde
   const lose = () => {
     setGame("ended");
     setResult(false);
   };
 
+   // Função chamada ao clicar numa célula
   const turnCell = (cell) => {
     if (open === 0 && game !== "started") {
       setGame("started");
@@ -86,14 +93,17 @@ function App() {
     }
   };
 
+  // Função para atualizar o número de bandeiras disponíveis
   const updFlags = (amount) => {
     setFlags(prevFlags => prevFlags + amount);
   };
 
+  // Função para redefinir o número de bandeiras
   const resetFlags = (newFlags) => {
     setFlags(newFlags);
   };
 
+   // Função para reiniciar o jogo
   const resetGame = () => {
     setKey(prevKey => prevKey + 1); // Força a re-montagem do componente Board
     setFlags(mines);

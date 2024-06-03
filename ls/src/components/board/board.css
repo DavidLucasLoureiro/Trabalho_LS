@@ -16,7 +16,6 @@ body {
     transform: translate(-50%, -50%);
 }
 
-/* Estilos para o tabuleiro no nível fácil */
 .board-easy {
     grid-template-columns: repeat(9, 30px);
     grid-template-rows: repeat(9, 30px);
@@ -24,7 +23,6 @@ body {
     left: 50%;
 }
 
-/* Estilos para o tabuleiro no nível médio */
 .board-medium {
     grid-template-columns: repeat(16, 30px);
     grid-template-rows: repeat(16, 30px);
@@ -32,7 +30,6 @@ body {
     left: 50%;
 }
 
-/* Estilos para o tabuleiro no nível difícil */
 .board-hard {
     grid-template-columns: repeat(30, 30px);
     grid-template-rows: repeat(16, 30px);

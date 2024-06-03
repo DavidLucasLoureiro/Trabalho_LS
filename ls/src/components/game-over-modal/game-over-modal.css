@@ -20,11 +20,11 @@
     color: white;
 }
 
-.modal-win {
+.modal-ganhar {
     background-color: #7FFF7F;
 }
 
-.modal-lose {
+.modal-perder {
     background-color: #FF6961;
 }
 
