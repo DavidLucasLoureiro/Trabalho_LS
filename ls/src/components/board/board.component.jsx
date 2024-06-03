@@ -49,14 +49,12 @@ function Board(props) {
             }
         }))
 
-        console.log(board);
         return board;
     };
 
     const [board, setBoard] = useState(initializeBoard());
 
     const handleCellClick = (x, y) => {
-       //debugger
         let newBoard = [...board];
         let cell = newBoard[y][x];
 
@@ -84,9 +82,7 @@ function Board(props) {
             
             if (cell.hasMine === true && cell.bombs === 0){
               // Se abrir uma mina
-              console.log("mina!");
               revealAll();
-              //window.alert("Game Over!");
               props.lose();
             }
     
@@ -102,8 +98,6 @@ function Board(props) {
 
     useEffect(() => {
         if (props.open + props.mines === props.rows*props.cols) {
-            console.log("win");
-            //window.alert("You Win!");
            props.win();
            revealAll();
         }
@@ -116,12 +110,6 @@ function Board(props) {
           let cell = newBoard[i][j];
           if (!cell.isOpen){
             cell.isOpen = true;
-            if(cell.hasFlag && cell.hasMine){
-                console.log("correct");
-            }
-            else if(cell.hasFlag&&!cell.hasMine||cell.hasQuestion&&!cell.hasMine){
-                console.log("womp womp");
-            }
           }
         }
       }
@@ -147,7 +135,6 @@ function Board(props) {
             cell.hasQuestion=false;
         } 
 
-        console.log(cell.hasQuestion);
         setBoard(newBoard);
     };
     

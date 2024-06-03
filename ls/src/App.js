@@ -1,11 +1,7 @@
-import './assets/styles/App.css';
-import Timer from "./components/timer/timer.component";
+import { useEffect, useState } from 'react'
 import Header from './components/header/header.component';
 import Board from "./components/board/board.component";
-import Cell from "./components/cell/cell.component";
-import Modal from "./components/game-over-modal/game-over-modal.component";
-import GameOverModal from './components/game-over-modal/game-over-modal.component';
-import { useEffect, useState } from 'react'
+
 
 function App() {
   const [game, setGame] = useState("wait");
@@ -59,13 +55,8 @@ function App() {
     } else {
       setDiff("2");
     }
+    resetGame();
   };
-
-  useEffect(() => {
-    if (game === "started") {
-      console.log("start");
-    }
-  }, [game]);
 
   const win = () => {
     setGame("ended");
@@ -100,6 +91,7 @@ function App() {
     setOpen(0);
     setGame("wait");
     setTime(0);
+    setResult(false)
   };
 
   return (

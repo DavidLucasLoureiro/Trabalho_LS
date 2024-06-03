@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './game-over-modal.css'; 
 
-const GameOverModal = (props) => {
+function GameOverModal(props) {
+
     if (props.game!== "ended") return null;
 
     const getModalClass = () => {
@@ -12,8 +13,10 @@ const GameOverModal = (props) => {
         }
     };
 
+    
+
     return (
-        <div className="game-over-modal">  
+        <div className="game-over-modal" disabled={props.result}>  
             <div className={`game-over-content ${getModalClass()}`}>
                 <h2>{props.result ? "Ganhas-te 👍!" : "Perdes-te 🙁!"}</h2>
             </div>
