@@ -5,6 +5,7 @@ import Cell from '../cell/cell.component';
 function Board(props) {
     const initializeBoard = () => {
         let board = [];
+        // Criar um array bidimensional para o tabuleiro
         for (let i = 0; i < props.rows; i++) {
             board.push([]);
             for (let j = 0; j < props.cols; j++) {
@@ -20,7 +21,7 @@ function Board(props) {
             }
         }
 
-        // Adiciona minas
+        // Adicionar minas aleatoriamente no tabuleiro
         for (let i = 0; i < props.mines; i++) {
             let randomRow = Math.floor(Math.random() * props.rows);
             let randomCol = Math.floor(Math.random() * props.cols);
@@ -32,7 +33,7 @@ function Board(props) {
                 cell.hasMine = true;
             }
         }
-
+         // Calcular o número de minas adjacentes para cada célula
         board.map(row => row.map(cell => {
             if (!cell.hasMine) {
                 let bombs = 0;
@@ -51,9 +52,10 @@ function Board(props) {
 
         return board;
     };
-
+     // Estado inicial do tabuleiro
     const [board, setBoard] = useState(initializeBoard());
 
+     // Função para lidar com o clique na célula
     const handleCellClick = (x, y) => {
         let newBoard = [...board];
         let cell = newBoard[y][x];
@@ -62,6 +64,8 @@ function Board(props) {
 
         cell.isOpen = true;
         props.turnCell(cell);
+
+        // Se a célula tem uma mina e é o primeiro clique
         if(cell.hasMine  === true && props.open === 0){
             newBoard = initializeBoard();
             setBoard(newBoard);
@@ -85,24 +89,25 @@ function Board(props) {
               revealAll();
               props.lose();
             }
-    
             setBoard(newBoard);
         }
         
     };
-
+    // Efeito para inicializar o tabuleiro quando o número de minas muda
     useEffect(() => {
         const board = initializeBoard();
         setBoard(board);
     },[props.mines]);
 
+    // Efeito para verificar se o jogador ganhou
     useEffect(() => {
         if (props.open + props.mines === props.rows*props.cols) {
            props.win();
            revealAll();
         }
      }, [props.open]);
-
+    
+    // Função para revelar todas as células
     const revealAll = (x,y) => {
       let newBoard = [...board];
       for (let i = 0; i<props.rows; i++){
@@ -116,29 +121,31 @@ function Board(props) {
       setBoard(newBoard);
     };
 
+    // Função para lidar com o clique direito na célula
     const handleRightClick = (e, x, y) => {
         e.preventDefault();
         let newBoard = [...board];
         let cell = newBoard[y][x];
 
         if (cell.isOpen) return;
+
         if(props.flags==0&&!cell.hasFlag&&!cell.hasQuestion)return;
 
         if(!cell.hasFlag && !cell.hasQuestion){
             cell.hasFlag = true;
             props.updFlags(-1);
+
         }else if(cell.hasFlag){
             cell.hasFlag = false;
             cell.hasQuestion = true;
             props.updFlags(+1);
+
         }else if(cell.hasQuestion){
             cell.hasQuestion=false;
         } 
-
         setBoard(newBoard);
     };
     
-
     return (
         <div className={`board ${props.getBoardClass()}`}>
                 {board.map((row, rowIndex) => (
