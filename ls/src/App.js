@@ -62,6 +62,7 @@ function App() {
     } else {
       setDiff("2");
     }
+    resetGame();
   };
 
   // useEffect para executar ações quando o estado do jogo muda para "started"
