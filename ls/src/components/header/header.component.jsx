@@ -25,6 +25,16 @@ function Header(props) {
         }
     };
 
+    const getCreditsClass = () => {
+        if (props.diff === "0") {
+            return "credits-easy";
+        } else if (props.diff === "1") {
+            return "credits-medium";
+        } else if (props.diff === "2") {
+            return "credits-hard";
+        }
+    };
+
     return (
         <div className={`minesweeper ${getHeaderClass()}`}>
             <div className="minesweeper-title">
@@ -55,12 +65,12 @@ function Header(props) {
                     </button>
                 </div>
             </div>
-            <div className="credits">
-                Trabalho realizado por: 
+            <div className={`credits ${getCreditsClass()}`}>
+                <b>Trabalho realizado por:</b> David Loureiro | Pedro Águas | Rodrigo Cabaços
             </div>
             <div className="board-result">
                 <GameOverModal 
-                    game = {props.game}
+                    game={props.game}
                     result={props.result}
                 />
             </div>

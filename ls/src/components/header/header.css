@@ -8,7 +8,6 @@
     border-radius: 5px;
 }
 
-/* Centralizando o título e as imagens */
 .minesweeper-title {
     display: flex;
     align-items: center;
@@ -72,21 +71,32 @@
     height: 500px;
 }
 
+.credits-easy {
+    margin-top: 350px;
+    font-size: 12px;
+    text-align: center;
+}
+
 /* Estilos para o header no nível médio */
 .header-medium {
     width: 700px;
     height: 720px;
 }
 
-/* Estilos para o header no nível difícil */
+.credits-medium {
+    margin-top: 585px;
+    font-size: 13px;
+    text-align: center;
+}
+
+/* Estilos para o header no nível dificil */
 .header-hard {
     width: 1100px;
     height: 750px;
 }
 
-/* Estilo para a div de créditos */
-.credits {
-    margin-top: 10px;
-    font-size: 1em;
+.credits-hard {
+    margin-top: 600px;
+    font-size: 14px;
     text-align: center;
 }
