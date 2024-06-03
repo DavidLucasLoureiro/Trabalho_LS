@@ -72,6 +72,7 @@ function Header(props) {
                 <GameOverModal 
                     game={props.game}
                     result={props.result}
+                    diff={props.diff}
                 />
             </div>
         </div>

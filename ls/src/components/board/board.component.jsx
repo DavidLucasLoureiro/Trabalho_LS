@@ -122,7 +122,6 @@ function Board(props) {
             else if(cell.hasFlag&&!cell.hasMine||cell.hasQuestion&&!cell.hasMine){
                 console.log("womp womp");
             }
-        
           }
         }
       }
