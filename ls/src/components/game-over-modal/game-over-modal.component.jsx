@@ -2,23 +2,20 @@ import React from 'react';
 import './game-over-modal.css'; 
 
 const GameOverModal = (props) => {
-    if (props.game !== "ended") return null;
+    if (props.game!== "ended") return null;
 
     const getModalClass = () => {
-        debugger
-        if (props.diff === "0") {
-            return "modal-easy";
-        } else if (props.diff === "1") {
-            return "modal-medium";
-        } else if (props.diff === "2") {
-            return "modal-hard";
+        if(props.result===true){
+            return "modal-win";
+        }else{
+            return "modal-lose";
         }
     };
 
     return (
-        <div className={`game-over-modal ${getModalClass()}`}>  
-            <div className="game-over-content">
-                <h2>{props.result ? "You Win!" : "You Lose!"}</h2>
+        <div className="game-over-modal">  
+            <div className={`game-over-content ${getModalClass()}`}>
+                <h2>{props.result ? "Ganhas-te 👍!" : "Perdes-te 🙁!"}</h2>
             </div>
         </div>
     );

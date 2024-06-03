@@ -1,9 +1,9 @@
 .game-over-modal {
-    right: 20px; 
     background: rgba(0, 0, 0, 0.5); 
     padding: 5px; 
     border-radius: 10px;
     z-index: 1000; 
+    position: relative;
 }
 
 .game-over-content {
@@ -11,22 +11,20 @@
     padding: 5px;
     border-radius: 5px;
     text-align: center;
+    width: 200px;
 }
 
 .game-over-content h2 {
     margin-bottom: 10px;
     font-size: 18px;
-    color: #333;
+    color: white;
 }
 
-.game-over-modal-easy {
-    margin-top: 300px;
+.modal-win {
+    background-color: #7FFF7F;
 }
 
-.game-over-modal-medium {
-    top: 150px;
+.modal-lose {
+    background-color: #FF6961;
 }
 
-.game-over-modal-hard {
-    top: 200px;
-}

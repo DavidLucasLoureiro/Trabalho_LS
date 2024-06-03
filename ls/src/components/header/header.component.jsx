@@ -42,6 +42,7 @@ function Header(props) {
                 <h1>Minesweeper</h1>
                 <img src="img/bomb-title-rotated.png" alt="euro" className="right-image" />
             </div>
+            
             <div className="board-head">
                 <div className="diff">
                     <select className="diff" disabled={isDisabled} onChange={props.onDiffChange}>
@@ -65,15 +66,14 @@ function Header(props) {
                     </button>
                 </div>
             </div>
-            <div className={`credits ${getCreditsClass()}`}>
-                <b>Trabalho realizado por:</b> David Loureiro | Pedro Águas | Rodrigo Cabaços
-            </div>
             <div className="board-result">
                 <GameOverModal 
                     game={props.game}
                     result={props.result}
-                    diff={props.diff}
                 />
+            </div>
+            <div className={`credits ${getCreditsClass()}`}>
+                <b>Trabalho realizado por:</b> David Loureiro | Pedro Águas | Rodrigo Cabaços
             </div>
         </div>
     );
