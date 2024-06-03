@@ -12,7 +12,8 @@
 }
 
 .cell.even{
-    filter: brightness(85%);
+    background-color: #93b8c4;
+    border: 2px solid #93b8c4;
 }
 
 .cell.open {
@@ -20,13 +21,12 @@
     border-color: #d2b48c;
 }
 
-.mine-image {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.cell.open.even{
+    background-color: #b39977;
+    border-color: #b39977;
 }
 
-.flag-image {
+.image {
     width: 100%;
     height: 100%;
     object-fit: contain;
