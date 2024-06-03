@@ -17,7 +17,7 @@ function App() {
   const [diff, setDiff] = useState("0");
   const [time, setTime] = useState(0);
   const [key, setKey] = useState(0); // Usado para forçar a re-montagem do componente Board
-  const [result,setResult] = useState(false);
+  const [result,setResult] = useState("");
 
   useEffect(() => {
     if (diff === "0") {
@@ -113,7 +113,9 @@ function App() {
           flags={flags}
           diff={diff}
           resetGame={resetGame}
+          result={result}
         />
+        
         <Board
           key={key} // Usado para re-montar o componente Board
           game={game}
@@ -128,11 +130,6 @@ function App() {
           updFlags={updFlags}
           resetFlags={resetFlags}
           getBoardClass={getBoardClass}
-      />
-      <GameOverModal 
-        game = {game}
-        result={result}
-        resetGame={resetGame}
       />
       </main>
     </div>

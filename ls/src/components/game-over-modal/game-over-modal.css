@@ -1,28 +1,41 @@
+/* Estiliza o fundo do modal */
 .game-over-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: fixed; /* Fixa o modal na tela */
+    bottom: 20px; /* Alinha na parte inferior */
+    right: 20px; /* Alinha na parte direita */
+    background: rgba(0, 0, 0, 0.5); /* Fundo semitransparente */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 10px;
+    z-index: 1000; /* Certifica-se de que o modal esteja acima de outros elementos */
+    max-width: 300px; /* Limita a largura máxima */
 }
 
+/* Estiliza o conteúdo do modal */
 .game-over-content {
-    background-color: white;
+    background: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destacar o modal */
 }
 
-.game-over-content h2 {
-    margin-bottom: 20px;
+.game-over-content h1 {
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #333;
 }
 
 .game-over-content button {
     padding: 10px 20px;
-    font-size: 1em;
+    font-size: 16px;
     cursor: pointer;
+    background-color: #4CAF50; /* Cor do botão */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.game-over-content button:hover {
+    background-color: #45a049; /* Cor do botão ao passar o mouse */
 }

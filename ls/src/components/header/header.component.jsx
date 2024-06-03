@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './header.css';
 import '../board/board.component';
 import Timer from '../timer/timer.component';
+import GameOverModal from '../game-over-modal/game-over-modal.component';
 
 function Header(props) {
     const [isDisabled, setIsDisabled] = useState(false);
@@ -55,6 +56,12 @@ function Header(props) {
                         <img src="img/reset.png" alt="reset" />
                     </button>
                 </div>
+            </div>
+            <div className="board-result">
+                <GameOverModal 
+                    game = {props.game}
+                    result={props.result}
+                />
             </div>
         </div>
     );
