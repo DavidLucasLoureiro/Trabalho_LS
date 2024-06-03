@@ -7,7 +7,7 @@ const GameOverModal = ({ game, resetGame, result }) => {
     return (
         <div className="game-over-modal">
             <div className="game-over-content">
-                <h1>{result ? "You Win!" : "You Lose!"}</h1>
+                <h2>{result ? "You Win!" : "You Lose!"}</h2>
             </div>
         </div>
     );

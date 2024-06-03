@@ -55,9 +55,7 @@ function Header(props) {
                     </button>
                 </div>
             </div>
-            <div className="credits">
-                Trabalho realizado por: 
-            </div>
+            
             <div className="board-result">
                 <GameOverModal 
                     game = {props.game}

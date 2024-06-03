@@ -90,3 +90,9 @@
     font-size: 1em;
     text-align: center;
 }
+.board-result {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
