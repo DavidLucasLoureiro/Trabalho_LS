@@ -27,19 +27,17 @@ function Header(props) {
     return (
         <div className={`minesweeper ${getHeaderClass()}`}>
             <div className="minesweeper-title">
-                <img src="img/bola-de-futebol.png" alt="euro" className="left-image" />
+                <img src="img/bomb-title.png" alt="euro" className="left-image" />
                 <h1>Minesweeper</h1>
-                <img src="img/bola-de-futebol-rotated.png" alt="euro" className="right-image" />
+                <img src="img/bomb-title-rotated.png" alt="euro" className="right-image" />
             </div>
             <div className="board-head">
                 <div className="diff">
-                    <div className='select'>
-                        <select className="diff" disabled={isDisabled} onChange={props.onDiffChange}>
-                            <option value="0">Fácil</option>
-                            <option value="1">Médio</option>
-                            <option value="2">Avançado</option>
-                        </select>
-                    </div>
+                    <select className="diff" disabled={isDisabled} onChange={props.onDiffChange}>
+                        <option value="0">Fácil</option>
+                        <option value="1">Médio</option>
+                        <option value="2">Avançado</option>
+                    </select>
                 </div>
                 <div className="center">
                     <div className="flags">
@@ -55,6 +53,9 @@ function Header(props) {
                         <img src="img/reset.png" alt="reset" />
                     </button>
                 </div>
+            </div>
+            <div className="credits">
+                Trabalho realizado por: 
             </div>
         </div>
     );

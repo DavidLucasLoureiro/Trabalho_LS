@@ -1,8 +1,8 @@
 .cell {
     width: 30px;
     height: 30px;
-    background-color: #097818;
-    border: 2px solid #116e11;
+    background-color: #add8e6;
+    border: 2px solid #add8e6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,12 +12,12 @@
 }
 
 .cell.even{
-    filter: brightness(80%);
+    filter: brightness(85%);
 }
 
 .cell.open {
-    background-color: #be9548;
-    border-color: #947936;
+    background-color: #d2b48c;
+    border-color: #d2b48c;
 }
 
 .mine-image {
@@ -33,9 +33,9 @@
 }
 
 .cell:hover {
-    filter: brightness(85%);
+    filter: brightness(90%);
 }
 
 .cell.open:hover {
-    filter: brightness(85%);
+    filter: brightness(90%);
 }
